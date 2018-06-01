@@ -325,6 +325,9 @@ func get_key(obj interface{}, key string) (interface{}, error) {
 	if reflect.TypeOf(obj) == nil {
 		return nil, ErrGetFromNullObj
 	}
+	if key == "" {
+		return obj, nil
+	}
 	switch reflect.TypeOf(obj).Kind() {
 	case reflect.Map:
 		// if obj came from stdlib json, its highly likely to be a map[string]interface{}
